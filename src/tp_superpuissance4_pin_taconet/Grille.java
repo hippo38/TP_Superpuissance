@@ -63,6 +63,9 @@ public void viderGrille(){
         }
 }
 }
+public void afficherGrilleSurConsole(){
+    System.out.println(Cellules);
+}
 public boolean celluleOccupee(int i, int j){
     if(Cellules[i][j]!=null){
         return true;
