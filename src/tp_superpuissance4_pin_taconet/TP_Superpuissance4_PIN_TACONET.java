@@ -19,7 +19,7 @@ public class TP_Superpuissance4_PIN_TACONET {
         Jeton jetontest=new Jeton("rouge");
         Joueur joueurtest=new Joueur("BOB");
         System.out.println(jetontest.lireCouleur());
-        joueurtest.ajouterJeton(jetontest);
+        //joueurtest.ajouterJeton(jetontest);
     }
     
 }
