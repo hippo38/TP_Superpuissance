@@ -82,6 +82,7 @@ public void debuterPartie() {
         
         attribuerCouleursAuxJoueurs();
         int aléatoire = random.nextInt(1);//la variable aléatoire prend soit la valeur 0 soit la valeure 1
+        System.out.println("aléatoire");
         if (aléatoire == 0) {
             System.out.println("Couleur tirée : R "); // la couleure rouge commence 
         } else {
@@ -109,12 +110,13 @@ public void debuterPartie() {
         Scanner sc = new Scanner(System.in);
         initialiserPartie();
         System.out.println("Début de la partie");
+        System.out.println(JoueurCourant.Nom);
         int i = 0;
         while (Grillefinal.etreGagnantePourJoueur(ListeJoueurs[0]) == false && Grillefinal.etreGagnantePourJoueur(ListeJoueurs[1]) == false && Grillefinal.etreRemplie() == false) {
             System.out.println("\n");
-            
             Grillefinal.afficherGrilleSurConsole();
             while (JoueurCourant.NombreJetonsRestants != 0 && i == 0) {
+                Grillefinal.afficherGrilleSurConsole();
                 System.out.println("C'est au tour de "+JoueurCourant.Nom);
                 System.out.println("Choisissez une action:\n 1) Jouer un jeton\n 2)Récupérer un jeton\n 3) Désintégrer un jeton\n");
                 int choix = sc.nextInt();
@@ -126,7 +128,6 @@ public void debuterPartie() {
                         int li = 5;//numéro de la ligne si il n'y a pas de jeton sur la première ligne de la colonne
                         while (Grillefinal.Cellules[li][colonne].jetonCourant != null && li >= 0) { //permet d'aller a la première cellule vide de la colonne
                             li=li-1; 
-                            System.out.println("aaa");
                         }
                         
                         if (Grillefinal.Cellules[li][colonne].presencedesintegrateur() == true) {//s'il y a un désintégrateur
@@ -139,7 +140,7 @@ public void debuterPartie() {
                         
                         System.out.println(JoueurCourant.Nom + "a " + JoueurCourant.NombreJetonsRestants+" jetons restants");
                     
-                    } 
+                    }
                     
                     else if (Grillefinal.colonneRemplie(colonne) == true) {
                         System.out.println("la colonne " + colonne + " remplie");
@@ -212,7 +213,7 @@ public void debuterPartie() {
             else {
                 JoueurCourant = ListeJoueurs[1];
             }
-            i=1;
+            i=0;
             
 
         }
