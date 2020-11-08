@@ -16,11 +16,12 @@ public class TP_Superpuissance4_PIN_TACONET {
      */
     public static void main(String[] args) {
         // TODO code application logic here
-        Jeton jetontest=new Jeton("rouge");
-        Joueur joueurtest=new Joueur("BOB");
-        System.out.println(jetontest.lireCouleur());
+        Joueur joueur1=new Joueur("BOB");
+        Joueur joueur2=new Joueur("JEAN");
+        Joueur ListeJoueurs[]=new Joueur[2];
         Grille Celluletest=new Grille();
-        Celluletest.afficherGrilleSurConsole();
+        Partie Partie1=new Partie(joueur1,joueur2);
+        Partie1.debuterPartie();
     }
     
 }
