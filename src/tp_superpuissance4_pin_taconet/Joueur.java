@@ -12,7 +12,7 @@ package tp_superpuissance4_pin_taconet;
 public class Joueur {
     String Nom;
     String Couleur;
-    Jeton[] ListeJetons;
+    Jeton ListeJetons[]=new Jeton[21];
     int NombreDesintegrateurs=0;
     int NombreJetonsRestants;
 public Joueur(String NomJoueur){
