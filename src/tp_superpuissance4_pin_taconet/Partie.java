@@ -55,7 +55,13 @@ public void initialiserPartie(){
     for(int k=0;k<5;k++){
         int i=random.nextInt(6);
         int j=random.nextInt(7);
-        Cellules.placerTrouNoir(i,j);
+        //if(Cellules.placerTrouNoir(i,j)==false){
+            //k=k-1;
+        //}
+        //if(Cellules[i][j].presenceTrouNoir()==true){
+            //System.out.println("non");
+        //}
+        //System.out.println(i+" "+j);
         int m=random.nextInt(6);
         int n=random.nextInt(7);
         while(m==i&&n==j){
