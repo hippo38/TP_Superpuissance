@@ -74,17 +74,17 @@ public void afficherGrilleSurConsole(){
     for(int i=0;i<6;i++){
         for(int j=0;j<7;j++){
             if(Cellules[i][j].presenceTrouNoir()==true){
-                System.out.print("TN");
+                System.out.print(" T ");
             }
             else if(Cellules[i][j].presencedesintegrateur()==true){
-                System.out.print("D");
+                System.out.print(" D ");
             }
             else if(Cellules[i][j].jetonCourant==null){
-                System.out.print(" ");
+                System.out.print(" N ");
                
             }
             else{
-                System.out.print(Cellules[i][j].jetonCourant.Couleur);
+                System.out.print(" "+Cellules[i][j].jetonCourant.Couleur+" ");
             }
         }
         System.out.print("\n");
