@@ -142,7 +142,7 @@ public void debuterPartie() {
                     }
                     
                     else if (Grillefinal.colonneRemplie(colonne) == true) {
-                        System.out.println("la colonne " + colonne + " remplie");
+                        System.out.println("la colonne " + colonne+1 + " remplie");
                     }
                     
                     else{
