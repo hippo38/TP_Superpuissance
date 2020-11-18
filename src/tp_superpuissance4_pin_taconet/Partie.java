@@ -110,15 +110,14 @@ public void debuterPartie() {
         Scanner sc = new Scanner(System.in);
         initialiserPartie();
         System.out.println("Début de la partie");
-        System.out.println(JoueurCourant.Nom);
         int i = 0;
         while (Grillefinal.etreGagnantePourJoueur(ListeJoueurs[0]) == false && Grillefinal.etreGagnantePourJoueur(ListeJoueurs[1]) == false && Grillefinal.etreRemplie() == false) {
             System.out.println("\n");
-            Grillefinal.afficherGrilleSurConsole();
             while (JoueurCourant.NombreJetonsRestants != 0 && i == 0) {
                 Grillefinal.afficherGrilleSurConsole();
-                System.out.println("C'est au tour de "+JoueurCourant.Nom);
-                System.out.println("Choisissez une action:\n 1) Jouer un jeton\n 2)Récupérer un jeton\n 3) Désintégrer un jeton\n");
+                System.out.println("C'est au tour de "+JoueurCourant.Nom+" de jouer ("+JoueurCourant.Couleur+")");
+                System.out.println("Vous avez "+JoueurCourant.NombreJetonsRestants +" jetons "+"\n"+"Vous avez "+JoueurCourant.NombreDesintegrateurs+" désintégrateurs");
+                System.out.println("Choisissez une action:\n 1) Jouer un jeton\n 2) Récupérer un jeton\n 3) Désintégrer un jeton\n");
                 int choix = sc.nextInt();
                 if (choix == 1) {
                     Grillefinal.afficherGrilleSurConsole();
@@ -138,7 +137,7 @@ public void debuterPartie() {
                             JoueurCourant.NombreJetonsRestants = JoueurCourant.NombreJetonsRestants-1;//le joueur place son jeton, il en a donc 1 en oins en réserve
                         }
                         
-                        System.out.println(JoueurCourant.Nom + "a " + JoueurCourant.NombreJetonsRestants+" jetons restants");
+                        System.out.println(JoueurCourant.Nom + " a " + JoueurCourant.NombreJetonsRestants+" jetons restants");
                     
                     }
                     
@@ -160,13 +159,15 @@ public void debuterPartie() {
                     if (Grillefinal.celluleOccupee(ligne,colonne) == false) {
                         System.out.println("Cette cellule est vide");
                     } 
-                    if (Grillefinal.lireCouleurDuJeton(ligne,colonne) == JoueurCourant.Couleur) {
+                    else if (Grillefinal.lireCouleurDuJeton(ligne,colonne) == JoueurCourant.Couleur) {
                         Grillefinal.recupererJeton(ligne,colonne);//on récupère le jeton
                         
                         JoueurCourant.NombreJetonsRestants = JoueurCourant.NombreJetonsRestants +1;//le joueur récupère un jeton
                         
                         Grillefinal.tasserGrille(colonne); // on tasse la grille
                     } 
+                    
+                    
                     else {
                         System.out.println("erreur");//le joueur perd son tour
                     }
@@ -178,12 +179,18 @@ public void debuterPartie() {
                     
                     System.out.println("Saisissez la ligne du jeton que vous sohaitez désintégrer");
                     int ligne = sc.nextInt()-1;
-                    
+                    while(ligne>5||ligne<0){
+                        System.out.println("Veuillez saisir une ligne valide");
+                        ligne=sc.nextInt()-1;
+                    }
                     System.out.println("Saisissez la colonne du jeton");
                     int colonne = sc.nextInt()-1;
-                    
+                    while(colonne>6||colonne<0){
+                        System.out.println("Veuillez saisir une colonne valide");
+                        colonne=sc.nextInt()-1;
+                    }
                     if (JoueurCourant.NombreDesintegrateurs != 0) {// si le joueur a des désintégrateur
-                        if (Grillefinal.celluleOccupee(ligne,colonne) == true && Grillefinal.Cellules[ligne][colonne].lireCouleurDuJeton() != JoueurCourant.Couleur) {//si la cellule est occupé par un jeton adverses
+                        if (Grillefinal.Cellules[ligne][colonne].jetonCourant!= null && Grillefinal.Cellules[ligne][colonne].lireCouleurDuJeton() != JoueurCourant.Couleur) {//si la cellule est occupé par un jeton adverses
                             Grillefinal.supprimerJeton(ligne,colonne);
                             Grillefinal.tasserGrille(colonne);//on supprime le jeton et on tasse la grille
                             JoueurCourant.utiliserDesintegrateur();//le joueur perd un désintégrateur
