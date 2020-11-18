@@ -199,7 +199,7 @@ public void tasserGrille(int j){
     }
 }
 public boolean colonneRemplie(int j){
-    if(Cellules[0][j].recupererJeton()!=null){
+    if(Cellules[0][j].jetonCourant!=null){
         return true;
     }
     else{
