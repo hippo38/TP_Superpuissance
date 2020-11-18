@@ -18,6 +18,7 @@ public Jeton(String uneCouleur){
 public String lireCouleur(){
     return Couleur;
 }
+@Override
 public String toString(){
     if("Rouge"==Couleur){
         return "\u0018_[31m 0";
