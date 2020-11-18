@@ -29,6 +29,10 @@ public boolean ajouterJetonDansColonnes(Jeton unJeton, int Colonne){
     }
     if(i!=-1){
         Cellules[i][Colonne].affecterJeton(unJeton);
+        if(Cellules[i][Colonne].presenceTrouNoir()){
+        Cellules[i][Colonne].activerTrouNoir();
+    }
+    
         return true;
     }
     else{
@@ -87,7 +91,7 @@ public void afficherGrilleSurConsole(){
     }
 }
 public boolean celluleOccupee(int i, int j){
-    if(Cellules[i][j]!=null){
+    if(Cellules[i][j].jetonCourant!=null){
         return true;
         }
     else{
@@ -186,8 +190,8 @@ public boolean etreGagnantePourJoueur(Joueur unJoueur){
 }    
 public void tasserGrille(int j){
     for(int i=6;i>0;i--){
-        if(Cellules[i][j]==null){
-               if(Cellules[i-1][j]!=null){
+        if(Cellules[i][j].jetonCourant==null){
+               if(Cellules[i-1][j].jetonCourant!=null){
                    Cellules[i][j]=Cellules[i-1][j];
                 }
                 
@@ -195,7 +199,7 @@ public void tasserGrille(int j){
     }
 }
 public boolean colonneRemplie(int j){
-    if(Cellules[0][j]==null){
+    if(Cellules[0][j].recupererJeton()!=null){
         return true;
     }
     else{
