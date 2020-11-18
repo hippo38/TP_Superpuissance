@@ -29,6 +29,8 @@ public boolean affecterJeton(Jeton unJeton){
     }
 }
 public Jeton recupererJeton(){
+    Jeton unjeton=jetonCourant;
+    jetonCourant=null;
     return jetonCourant;
 }
 public boolean supprimerJeton(){
