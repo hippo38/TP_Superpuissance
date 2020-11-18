@@ -30,7 +30,7 @@ public boolean ajouterJetonDansColonnes(Jeton unJeton, int Colonne){
     if(i!=-1){
         Cellules[i][Colonne].affecterJeton(unJeton);
         if(Cellules[i][Colonne].presenceTrouNoir()){
-        Cellules[i][Colonne].activerTrouNoir();
+            Cellules[i][Colonne].activerTrouNoir();
     }
     
         return true;
@@ -207,7 +207,7 @@ public boolean colonneRemplie(int j){
     }
 }
 public boolean placerTrouNoir(int i, int j){
-    if(Cellules[i][j].trouNoir==false){
+    if(Cellules[i][j].presenceTrouNoir()==false){
         Cellules[i][j].trouNoir=true;
         return true;
     }
