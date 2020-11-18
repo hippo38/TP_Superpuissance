@@ -43,44 +43,36 @@ public boolean supprimerJeton(){
     }
 }
 public boolean placerTrouNoir(){
-    if(trouNoir==false){
+    if(trouNoir){
+        return false;
+    }
+    else{
         trouNoir=true;
         return true;
     }
-    else{
-        return false;
-    }
 }
 public boolean placerDesintegrateur(){
-    if(desintegrateur==false){
+    if(desintegrateur){
+        return false;
+    }
+    else{
         desintegrateur=true;
         return true;
     }
-    else{
-        return false;
-    }
 }
 public boolean presenceTrouNoir(){
-    if(trouNoir==true){
-        return true;
-    }
-    else{
-        return false;
-    }
+   return trouNoir;
+   
 }
 public boolean presencedesintegrateur(){
-    if(desintegrateur==true){
-        return true;
-    }
-    else{
-        return false;
-    }
+    return desintegrateur;
 }
+
 public String lireCouleurDuJeton(){
     return jetonCourant.lireCouleur();
 }
 public boolean recupererDesintegrateur(){
-    if(desintegrateur==true){
+    if(presencedesintegrateur()==true){
         desintegrateur=false;
         return true;
     }
@@ -89,7 +81,7 @@ public boolean recupererDesintegrateur(){
     }
 }
 public boolean activerTrouNoir(){
-    if(trouNoir==true){
+    if(trouNoir){
         jetonCourant=null;
         trouNoir=false;
         return true;
