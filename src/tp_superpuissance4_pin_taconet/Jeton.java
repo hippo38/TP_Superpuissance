@@ -18,4 +18,13 @@ public Jeton(String uneCouleur){
 public String lireCouleur(){
     return Couleur;
 }
+public String toString(){
+    if("Rouge"==Couleur){
+        return "\u0018_[31m 0";
+    
+    }
+    else{
+        return "\u001B[33m 0";
+    }
+}
 }
