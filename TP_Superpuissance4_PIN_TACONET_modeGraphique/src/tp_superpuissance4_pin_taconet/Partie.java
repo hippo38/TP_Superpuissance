@@ -173,7 +173,7 @@ public void debuterPartie() {
                         
                         JoueurCourant.NombreJetonsRestants = JoueurCourant.NombreJetonsRestants +1;//le joueur récupère un jeton
                         
-                        Grillefinal.tasserGrille(colonne); // on tasse la grille
+                        Grillefinal.tasserGrille(); // on tasse la grille
                     } 
                     
                     
@@ -201,7 +201,7 @@ public void debuterPartie() {
                     if (JoueurCourant.NombreDesintegrateurs != 0) {// si le joueur a des désintégrateur
                         if (Grillefinal.Cellules[ligne][colonne].jetonCourant!= null && Grillefinal.Cellules[ligne][colonne].lireCouleurDuJeton() != JoueurCourant.Couleur) {//si la cellule est occupé par un jeton adverses
                             Grillefinal.supprimerJeton(ligne,colonne);
-                            Grillefinal.tasserGrille(colonne);//on supprime le jeton et on tasse la grille
+                            Grillefinal.tasserGrille();//on supprime le jeton et on tasse la grille
                             JoueurCourant.utiliserDesintegrateur();//le joueur perd un désintégrateur
 
                         } 

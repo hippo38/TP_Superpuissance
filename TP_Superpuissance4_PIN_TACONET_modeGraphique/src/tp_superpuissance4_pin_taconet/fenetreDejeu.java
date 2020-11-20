@@ -30,25 +30,52 @@ public class fenetreDejeu extends javax.swing.JFrame {
         for (int i = 0; i < 6; i++) {
             for (int j = 0; j < 7; j++) {
                 CelluleGraphique cellGraph = new CelluleGraphique(Grillefinal.Cellules[i][j]);
-                
-                cellGraph.addActionListener(new java.awt.event.ActionListener(){
-                    public void actionPerformed(java.awt.event.ActionEvent evt){
-                        Cellule c= cellGraph.celluleAssociee;
-                        if (c.jetonCourant==null) return;
-                        
-                        if (c.jetonCourant.Couleur.equals(JoueurCourant.Couleur)){
-                            textemessage.setText(JoueurCourant.Nom+" récupère un de ses jetons");
-                            Jeton jrecup=c.recupererJeton();
-                            JoueurCourant.ajouterJeton(jrecup);
+
+                cellGraph.addActionListener(new java.awt.event.ActionListener() {
+                    public void actionPerformed(java.awt.event.ActionEvent evt) {
+                        Cellule c = cellGraph.celluleAssociee;
+                        if (c.jetonCourant == null) {
+                            return;
+                        }
+
+                        if (c.jetonCourant.Couleur.equals(JoueurCourant.Couleur)) {
+                            textemessage.setText(JoueurCourant.Nom + " récupère un de ses jetons");
+                            
+                            c.jetonCourant=null;
+                            JoueurCourant.NombreJetonsRestants = JoueurCourant.NombreJetonsRestants +1;//le joueur récupère un jeton;
                             joueurSuivant();
+                        } else {
+                            if (JoueurCourant.NombreDesintegrateurs > 0) {
+                                textemessage.setText(JoueurCourant.Nom + " veut désintégrer un jeton");
+                                c.supprimerJeton();
+                                JoueurCourant.utiliserDesintegrateur();
+                                joueurSuivant();
+                            } else {
+                                return;
+                            }
                         }
-                        
-                        else{
-                            textemessage.setText(JoueurCourant.Nom+" veut désintégrer un jeton");
+                        panneau_grille.repaint();
+                        Grillefinal.tasserGrille();
+                        panneau_grille.repaint();
+                        lbl_j1_desint.setText(ListeJoueurs[0].NombreDesintegrateurs + "");
+                        lbl_j2_desint.setText(ListeJoueurs[1].NombreDesintegrateurs + "");
+
+                        boolean vict_j1 = Grillefinal.etreGagnantePourJoueur(ListeJoueurs[0]);
+                        boolean vict_j2 = Grillefinal.etreGagnantePourJoueur(ListeJoueurs[1]);
+                        if (vict_j1 && !vict_j2) {
+                            textemessage.setText("Victoire de " + ListeJoueurs[0].Nom);
                         }
-                        
-                        
-                        
+                        if (vict_j2 && !vict_j1) {
+                            textemessage.setText("Victoire de " + ListeJoueurs[1].Nom);
+                        }
+                        if (vict_j1 && vict_j2) {
+                            if (JoueurCourant == ListeJoueurs[0]) {
+                                textemessage.setText("Victoire de " + ListeJoueurs[1].Nom + " (faute de jeu de l'autre joueur!)");
+                            } else {
+                                textemessage.setText("Victoire de " + ListeJoueurs[0].Nom + " (faute de jeu de l'autre joueur!)");
+                            }
+                        }
+
                     }
                 });
                 panneau_grille.add(cellGraph);
@@ -336,16 +363,22 @@ public class fenetreDejeu extends javax.swing.JFrame {
 
         lbl_j1_desint.setText(ListeJoueurs[0].NombreDesintegrateurs + "");
         lbl_j2_desint.setText(ListeJoueurs[1].NombreDesintegrateurs + "");
-        
-        boolean vict_j1=Grillefinal.etreGagnantePourJoueur(ListeJoueurs[0]);
-        boolean vict_j2=Grillefinal.etreGagnantePourJoueur(ListeJoueurs[1]);
-        if (vict_j1 && ! vict_j2) textemessage.setText("Victoire de "+ListeJoueurs[0].Nom);
-        if (vict_j2 && ! vict_j1) textemessage.setText("Victoire de "+ListeJoueurs[1].Nom);
-        if (vict_j1 && vict_j2) {
-            if(JoueurCourant==ListeJoueurs[0]) textemessage.setText("Victoire de "+ListeJoueurs[1].Nom+" (faute de jeu de l'autre joueur!)");
-            else textemessage.setText("Victoire de "+ListeJoueurs[0].Nom+" (faute de jeu de l'autre joueur!)");
+
+        boolean vict_j1 = Grillefinal.etreGagnantePourJoueur(ListeJoueurs[0]);
+        boolean vict_j2 = Grillefinal.etreGagnantePourJoueur(ListeJoueurs[1]);
+        if (vict_j1 && !vict_j2) {
+            textemessage.setText("Victoire de " + ListeJoueurs[0].Nom);
         }
-        
+        if (vict_j2 && !vict_j1) {
+            textemessage.setText("Victoire de " + ListeJoueurs[1].Nom);
+        }
+        if (vict_j1 && vict_j2) {
+            if (JoueurCourant == ListeJoueurs[0]) {
+                textemessage.setText("Victoire de " + ListeJoueurs[1].Nom + " (faute de jeu de l'autre joueur!)");
+            } else {
+                textemessage.setText("Victoire de " + ListeJoueurs[0].Nom + " (faute de jeu de l'autre joueur!)");
+            }
+        }
 
         if (Grillefinal.colonneRemplie(indice_colonne) == false) {
             int li = 5;//numéro de la ligne si il n'y a pas de jeton sur la première ligne de la colonne
@@ -366,7 +399,6 @@ public class fenetreDejeu extends javax.swing.JFrame {
             return false;
         }
 
-        
     }
 
     public void joueurSuivant() {

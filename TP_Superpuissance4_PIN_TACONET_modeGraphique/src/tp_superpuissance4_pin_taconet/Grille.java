@@ -188,13 +188,17 @@ public boolean etreGagnantePourJoueur(Joueur unJoueur){
         return false;
     }
 }    
-public void tasserGrille(int j){
-    for(int i=6;i>0;i--){
-        if(Cellules[i][j].jetonCourant==null){
-               if(Cellules[i-1][j].jetonCourant!=null){
-                   Cellules[i][j]=Cellules[i-1][j];
+public void tasserGrille(){
+    for(int j=0;j<7;j++){
+        for(int i=5;i>0;i--){
+            if(i==1){
+                Cellules[i][j].jetonCourant=null;
+            }else{
+                if(Cellules[i][j].jetonCourant==null){
+                   Cellules[i][j].jetonCourant=Cellules[i-1][j].jetonCourant;
+                   Cellules[i-1][j].jetonCourant=null;
                 }
-                
+            }    
         }
     }
 }
