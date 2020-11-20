@@ -52,6 +52,14 @@ public void initialiserPartie(){
     if(Cellules.etreRemplie()==true){
         Cellules.viderGrille(); 
     }
+    Scanner sc=new Scanner(System.in);
+    System.out.println("Pseudo joueur 1");
+    Joueur Joueur1=new Joueur(sc.nextLine());
+    System.out.println("Pseudo joueur2");
+    Joueur Joueur2=new Joueur(sc.nextLine());
+    ListeJoueurs[0] = Joueur1;
+    ListeJoueurs[1] = Joueur2;
+    
     for(int k=0;k<5;k++){
         int i=random.nextInt(6);
         int j=random.nextInt(7);
